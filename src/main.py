@@ -55,7 +55,7 @@ def main():
     submit = form.form_submit_button("Predict!")
     if submit:
         if not valid_input:
-            st.error('Please fill job details properly')
+            st.error('Please fill the form properly')
         else:
             data = {
                 'role': role.lower(),
