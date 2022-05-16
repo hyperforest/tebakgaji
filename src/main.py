@@ -32,7 +32,7 @@ def predict(data: pd.DataFrame):
     return y_pred
 
 def main():
-    st.set_page_config(layout="centered", page_icon='💵', page_title=title)
+    st.set_page_config(layout="centered", page_icon='💵', page_title='TebakGaji')
     st.title(title)
     st.write(subtitle)
     
