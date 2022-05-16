@@ -14,7 +14,7 @@ Data courtesy of [PredictSalary](https://predictsalary.com)
 company_placeholder = 'Select company'
 
 COMPANIES = ['Gojek', 'Shopee', 'Tiket.com', 'Tokopedia', 'Traveloka', 'Bukalapak', 'Other']
-CITIES = ['Bandung', 'Denpasar', 'Jakarta', 'Semarang', 'Surabaya', 'Yogyakarta', 'Other']
+CITIES = ['Jakarta', 'Bandung', 'Semarang', 'Yogyakarta', 'Surabaya', 'Denpasar', 'Other']
 COUNTVEC_DIR = './model/count_vectorizer.pkl'
 MODEL_DIR = './model/catboost_model.pkl'
 
