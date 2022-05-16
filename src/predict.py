@@ -37,7 +37,7 @@ def predict(data: pd.DataFrame):
     return y_pred
 
 def main():
-    with open('sample.json', 'r') as file:
+    with open('./datasets/sample.json', 'r') as file:
         sample = json.load(file)
         
     data = pd.DataFrame(sample['data'])

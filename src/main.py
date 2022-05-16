@@ -5,29 +5,30 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-title = '💵 Predict Salary'
+title = '💵 TebakGaji'
+subtitle = 'Predict salary for any job with machine learning'
+footer = '''❤ Visit [repository](https://github.com/hyperforest/predict_salary_project)
 
-subtitle = '''Predict salary for any job with AI model
-
-(Data courtesy of [PredictSalary](https://predictsalary.com/))
+Data courtesy of [PredictSalary](https://predictsalary.com)
 '''
+company_placeholder = 'Select company'
 
 COMPANIES = ['Gojek', 'Shopee', 'Tiket.com', 'Tokopedia', 'Traveloka', 'Bukalapak', 'Other']
+CITIES = ['Bandung', 'Denpasar', 'Jakarta', 'Semarang', 'Surabaya', 'Yogyakarta', 'Other']
+COUNTVEC_DIR = './model/count_vectorizer.pkl'
+MODEL_DIR = './model/catboost_model.pkl'
 
-countvec_dir = './model/count_vectorizer.pkl'
-catboost_model_dir = './model/catboost_model.pkl'
-
-with open(countvec_dir, 'rb') as file:
+with open(COUNTVEC_DIR, 'rb') as file:
     count_vectorizer = pickle.load(file)
 
-with open(catboost_model_dir, 'rb') as file:
-    catboost_model = pickle.load(file)
+with open(MODEL_DIR, 'rb') as file:
+    model = pickle.load(file)
     
 def predict(data: pd.DataFrame):
     counts = count_vectorizer.transform(data.role).toarray().tolist()
     X = np.hstack([counts, data.drop('role', axis=1).values])
     
-    y_pred = catboost_model.predict(X).tolist()
+    y_pred = model.predict(X).tolist()
     return y_pred
 
 def main():
@@ -35,23 +36,26 @@ def main():
     st.title(title)
     st.write(subtitle)
     
-    form = st.form("Job Details")
-    
+    form = st.form("Job details")
     role = form.text_input('Job role')
-    
-    company_placeholder = 'Select company'
     company = form.selectbox('Company', [company_placeholder] + COMPANIES)
-    valid_company = (company != company_placeholder)
+    years_of_exp = form.number_input('Years of experience', min_value=0, max_value=30)
+    city = form.selectbox('City', CITIES)
+    other_city = form.text_input('Please type city here if you choose other')
+    
+    if city == 'Other':
+        city = other_city
 
-    years_of_exp = form.slider('Years of Experience', min_value=0, max_value=30)
-    
-    city = form.text_input('City')
-    
+    valid_input = (
+        (role != '')
+        & (company != company_placeholder)
+        & (city != '')
+    )
+
     submit = form.form_submit_button("Predict!")
-
     if submit:
-        if not valid_company:
-            st.error('Please select company')
+        if not valid_input:
+            st.error('Please fill job details properly')
         else:
             data = {
                 'role': role.lower(),
@@ -63,6 +67,8 @@ def main():
             prediction = predict(data)[0]
 
             st.success('Predicted salary: IDR %.1fM' % prediction)
+
+    st.write(footer)
 
 if __name__ == '__main__':
     main()

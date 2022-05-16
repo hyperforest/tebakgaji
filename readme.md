@@ -1,21 +1,13 @@
-# Predict Salary Project
+# TebakGaji
 
-Predict salary for any job with AI model.
+Predict salary for any job with machine learning
 
-Built with CatBoost and scikit-learn.
-
-Contains:
-- Notebook for data exploration and model training
-- Sample script for inference/prediction
+Built with [CatBoost](https://catboost.ai/) and scikit-learn
 
 Try on your own:
 - Clone this repository
-- Edit file `src/sample.json`
+- Edit file `datasets/sample.json`
 - `pip install -r requirements.txt`
-- `cd src`
-- `python predict.py`
+- `python src/predict.py`
 
-Next to do:
-- Deploy on Streamlit
-
-All credits belongs to [PredictSalary](https://predictsalary.com/) for the data.
+All credits belong to [PredictSalary](https://predictsalary.com/) for the data.
