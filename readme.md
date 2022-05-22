@@ -2,15 +2,29 @@
 
 Predict salary for any job with machine learning
 
-Built with [CatBoost](https://catboost.ai/) and scikit-learn
+Visit the Streamlit app [here](https://share.streamlit.io/hyperforest/predict_salary_project/main/src/main.py)
 
-# Try It
-- Clone this repository
-- Edit file `datasets/sample.json`
-- `pip install -r requirements.txt`
-- `python src/predict.py`
+<img src="docs/demo.png" alt="demo.png" width="200"/>
 
-or just go directly to the Streamlit app [here](https://share.streamlit.io/hyperforest/predict_salary_project/main/src/main.py)
+# Contents
+
+Last updated: 22 May 2022
+
+- [Notebook](notebooks/notebook.ipynb) for data exploration and modeling
+- [Python script](src/predict.py) for dummy prediction
+- [Dataset](datasets/data.html) (in HTML)
+
+# Limitations
+
+- Predictions are in monthly basis IDR
+- Data is only available from Indonesian citizens
+
+# Disclaimer
+
+The predictions do not reflect the actual salary. This project aims to demonstrate the use case of machine learning in salary data.
 
 # Credits
+
+Built with [CatBoost](https://catboost.ai/) and scikit-learn
+
 All credits belong to [PredictSalary](https://predictsalary.com/) for the data

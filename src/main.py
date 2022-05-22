@@ -42,14 +42,11 @@ def main():
     years_of_exp = form.number_input('Years of experience', min_value=0, max_value=30)
     city = form.selectbox('City', CITIES)
     other_city = form.text_input('Please type city here if you choose other')
-    
-    if city == 'Other':
-        city = other_city
 
     valid_input = (
         (role != '')
         & (company != company_placeholder)
-        & (city != '')
+        & ((city == 'Other') ^ (other_city == ''))
     )
 
     submit = form.form_submit_button("Predict!")
