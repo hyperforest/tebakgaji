@@ -1,4 +1,4 @@
-import json
+
 import pickle
 
 import numpy as np
@@ -7,14 +7,16 @@ import streamlit as st
 
 title = '💵 TebakGaji'
 subtitle = 'Predict salary for any job with machine learning'
-footer = '''❤ Visit [repository](https://github.com/hyperforest/predict_salary_project)
+footer = '''❤ Visit [repository](https://github.com/hyperforest/tebakgaji)
 
 Data courtesy of [PredictSalary](https://predictsalary.com)
 '''
 company_placeholder = 'Select company'
 
-COMPANIES = ['Gojek', 'Shopee', 'Tiket.com', 'Tokopedia', 'Traveloka', 'Bukalapak', 'Other']
-CITIES = ['Jakarta', 'Bandung', 'Semarang', 'Yogyakarta', 'Surabaya', 'Denpasar', 'Other']
+COMPANIES = ['Gojek', 'Shopee', 'Tiket.com', 'Tokopedia', 'Traveloka',
+             'Bukalapak', 'Other']
+CITIES = ['Jakarta', 'Bandung', 'Semarang', 'Yogyakarta', 'Surabaya',
+          'Denpasar', 'Other']
 COUNTVEC_DIR = './model/count_vectorizer.pkl'
 MODEL_DIR = './model/catboost_model.pkl'
 
@@ -23,23 +25,31 @@ with open(COUNTVEC_DIR, 'rb') as file:
 
 with open(MODEL_DIR, 'rb') as file:
     model = pickle.load(file)
-    
+
+
 def predict(data: pd.DataFrame):
     counts = count_vectorizer.transform(data.role).toarray().tolist()
     X = np.hstack([counts, data.drop('role', axis=1).values])
-    
+
     y_pred = model.predict(X).tolist()
     return y_pred
 
+
 def main():
-    st.set_page_config(layout="centered", page_icon='💵', page_title='TebakGaji')
+    st.set_page_config(layout="centered", page_icon='💵',
+                       page_title='TebakGaji')
     st.title(title)
     st.write(subtitle)
-    
+
     form = st.form("Job details")
+
     role = form.text_input('Job role')
     company = form.selectbox('Company', [company_placeholder] + COMPANIES)
-    years_of_exp = form.number_input('Years of experience', min_value=0, max_value=30)
+    years_of_exp = form.number_input(
+        'Years of experience',
+        min_value=0,
+        max_value=30
+    )
     city = form.selectbox('City', CITIES)
     other_city = form.text_input('Please type city here if you choose other')
 
@@ -66,6 +76,7 @@ def main():
             st.success('Predicted salary: IDR %.1fM' % prediction)
 
     st.write(footer)
+
 
 if __name__ == '__main__':
     main()

@@ -66,4 +66,3 @@ FIX_CITIES = {
 FIX_REMOTE = {
     'remote': ['remote', 'remotely']
 }
-
