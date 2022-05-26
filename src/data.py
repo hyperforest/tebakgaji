@@ -13,7 +13,7 @@ def clean_data(raw_data: pd.DataFrame, drop_unnecessary: bool = True
                ) -> pd.DataFrame:
     df = raw_data.copy()
 
-    cols_to_lower = ['role', 'company', 'city', 'gender', 'compensation']
+    cols_to_lower = ['role', 'company', 'city', 'compensation']
     for col in cols_to_lower:
         df[col] = df[col].str.lower()
 
@@ -42,7 +42,7 @@ def normalize_salary_to_million_idr_monthly(row: pd.Series) -> int:
 
     if row.currency != 'IDR':
         salary *= constants.CURRENCY_RATE[row.currency]
-    elif salary < 100:
+    elif salary <= 1000:
         salary *= 1_000_000
 
     if row.period == 'Annual':
@@ -53,7 +53,7 @@ def normalize_salary_to_million_idr_monthly(row: pd.Series) -> int:
 
 def clean_company(row: pd.Series) -> str:
     company = row.company
-    return company if company in constants.COMPANIES else 'other'
+    return 'other' if company == 'purchase to unlock 👆' else company
 
 
 def clean_country(row: pd.Series) -> str:
@@ -63,11 +63,6 @@ def clean_country(row: pd.Series) -> str:
 
 def clean_city(row):
     city = row.city
-
-    for remote in constants.FIX_REMOTE:
-        if remote in city:
-            city = 'remote'
-            break
 
     for correct_city, mispelled_cities in constants.FIX_CITIES.items():
         for mispelled_city in mispelled_cities:
@@ -92,3 +87,10 @@ def clean_role(row):
             role = role.replace(mispelled_role, rep)
 
     return role
+
+
+def limit_years_of_exp(row, limit=10):
+    yoe = row.years_of_exp
+    if yoe >= limit:
+        return str(limit) + '+'
+    return str(yoe)

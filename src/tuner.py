@@ -36,13 +36,17 @@ def tune_catboost_cv(X: pd.DataFrame, y: pd.Series,
     study.optimize(objective, n_trials=n_trials, timeout=timeout)
     finish = time()
 
-    trial = study.best_trial
-    print("> Finished in: %.1fs" % (finish - start))
-    print("> Number of completed trials: {}".format(len(study.trials)))
+    best_trial = study.best_trial
+    best_score = best_trial.value
+    num_trials = len(study.trials)
+    runtime = finish - start
+    avg_runtime = runtime / num_trials
+    print(f"> Number of completed trials: {num_trials}")
+    print(f"> Finished in: {runtime:.1f}s ({avg_runtime:.1f}s/trial)")
     print("> Best Params: ")
-    print(json.dumps(trial.params, indent=4))
-    print("> Best Score: {}".format(trial.value))
+    print(json.dumps(best_trial.params, indent=4))
+    print(f"> Best Score: {best_score}")
 
-    best_params = dict(**study.best_trial.params, **clf_params)
+    best_params = dict(**best_trial.params, **clf_params)
 
     return best_params, study
