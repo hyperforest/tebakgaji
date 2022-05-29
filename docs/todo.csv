@@ -1,0 +1,12 @@
+group,task,priority,date_added,date_completed
+code,Create training script (instead of notebook),1,27-05-22,29-05-22
+code,Create script to clean data,1,29-05-22,29-05-22
+code,Create script to replicate best model,1,29-05-22,29-05-22
+code,Implement Config class,1,27-05-22,29-05-22
+code,Put utility script as module,1,27-05-22,29-05-22
+code,Pipelining CountVec and the classifier,3,27-05-22,
+data,Add clean data,1,27-05-22,29-05-22
+dev,"Separate requirement file (dev, prod streamlit)",2,27-05-22,29-05-22
+docs,Add data schema in docs,1,29-05-22,29-05-22
+docs,Build brief documentations,1,27-05-22,29-05-22
+test,Build unit-testing code,2,27-05-22,

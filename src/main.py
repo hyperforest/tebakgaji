@@ -1,4 +1,3 @@
-
 import pickle
 
 import numpy as np
@@ -45,13 +44,11 @@ def main():
 
     role = form.text_input('Job role')
     company = form.selectbox('Company', [company_placeholder] + COMPANIES)
-    years_of_exp = form.number_input(
-        'Years of experience',
-        min_value=0,
-        max_value=30
-    )
-    city = form.selectbox('City', CITIES)
+    city = form.selectbox('Living city', CITIES)
     other_city = form.text_input('Please type city here if you choose other')
+    years_of_exp = form.number_input(
+        'Years of experience', min_value=0, max_value=30
+    )
 
     valid_input = (
         (role != '')
@@ -67,8 +64,8 @@ def main():
             data = {
                 'role': role.lower(),
                 'company': company.lower(),
-                'years_of_exp': years_of_exp,
-                'city': city.lower()
+                'city': city.lower(),
+                'years_of_exp': years_of_exp
             }
             data = pd.Series(data).to_frame(name=0).T
             prediction = predict(data)[0]

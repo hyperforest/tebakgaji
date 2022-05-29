@@ -3,14 +3,14 @@
         {
             "role": "software engineer",
             "company": "gojek",
-            "years_of_exp": 1,
-            "city": "bengaluru"
+            "city": "bengaluru",
+            "years_of_exp": 1
         },
         {
             "role": "principal data scientist",
             "company": "tokopedia",
-            "years_of_exp": 5,
-            "city": "jakarta"
+            "city": "jakarta",
+            "years_of_exp": 5
         }
     ]
 }
