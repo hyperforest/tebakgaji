@@ -1,0 +1,9 @@
+{ 
+    "depth": 7,
+    "boosting_type": "Ordered",
+    "bootstrap_type": "Bayesian",
+    "colsample_bylevel": 0.10868931950903539,
+    "n_estimators": 500,
+    "one_hot_max_size": 6,
+    "bagging_temperature": 6.661692991160619
+}

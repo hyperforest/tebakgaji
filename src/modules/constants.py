@@ -57,13 +57,16 @@ FIX_ROLE = {
     'yunior': 'junior'
 }
 
+# contains of key-values pair of correct city and list of mispelled city
+# if a city contains any of the value within the mispelled city list,
+# this city is then corrected to correct city (the key)
 FIX_CITIES = {
-    'jakarta': ['jakara', 'jkt', 'jabodetabek', 'jabotabek', 'jakerta'],
+    'jakarta': ['jakara', 'jkt', 'jabodetabek', 'jabotabek', 'jakerta',
+                'jakarta barat', 'jakarta timur', 'jakarta utara',
+                'jakarta selatan', 'jakarta pusat', 'north jakarta',
+                'south jakarta', 'west jakarta', 'east jakarta',
+                'central jakarta', 'bogor', 'depok', 'tangerang',
+                'bekasi'],
     'yogyakarta': ['yogya', 'jogja', 'jogjakarta', 'yk'],
     'denpasar': ['bali'],
 }
-
-FIX_REMOTE = {
-    'remote': ['remote', 'remotely']
-}
-
