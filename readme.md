@@ -4,7 +4,7 @@ Predict salary for any job with machine learning
 
 Visit the Streamlit app [here](https://share.streamlit.io/hyperforest/tebakgaji/main/src/main.py)
 
-<img src="docs/images/demo.png" alt="demo.png" width="200">
+<img src="docs/images/demo.png" alt="demo.png" width="640">
 
 # Contents
 
